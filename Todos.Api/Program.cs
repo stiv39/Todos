@@ -1,3 +1,4 @@
+using Todos.Api.Middlewares;
 using Todos.Application;
 using Todos.Infrastructure;
 
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 }
 
 var app = builder.Build();
@@ -24,6 +27,8 @@ var app = builder.Build();
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
+
+    app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
     app.MapControllers();
 

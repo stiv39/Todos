@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Todos.Application.Users.Commands.Register;
+using Todos.Contracts.Users;
 
 namespace Todos.Api.Controllers;
 
@@ -6,9 +9,25 @@ namespace Todos.Api.Controllers;
 [Route("api/[controller]")]
 public class UsersController : Controller
 {
-    [HttpPost]
-    public async Task<IActionResult> Register(string email, string password)
+    private readonly ISender _sender;
+
+    public UsersController(ISender sender)
     {
-        return Ok();
+        _sender = sender;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterUserRequest request)
+    {
+        var command = new RegisterUserCommand(request.Name, request.Email, request.Password);
+
+        var result = await _sender.Send(command);
+
+        if(!result.IsSuccess)
+        {
+            BadRequest("Email already in use");
+        }
+
+        return Ok(result.Value);
     }
 }

@@ -1,22 +1,30 @@
-﻿using Todos.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Todos.Domain.Entities;
 using Todos.Domain.Interfaces.Repositories;
 
 namespace Todos.Infrastructure.Persistence.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    public Task<Guid> AddUserAsync(User user)
+    private readonly DatabaseContext _databaseContext;
+
+    public UserRepository(DatabaseContext databaseContext)
     {
-        throw new NotImplementedException();
+        _databaseContext = databaseContext;
     }
 
-    public Task<User?> GetUserByEmailAsync(string email)
+    public async Task AddUserAsync(User user)
     {
-        throw new NotImplementedException();
+        await _databaseContext.Users.AddAsync(user);
     }
 
-    public Task<User?> GetUserByIdAsync(Guid id)
+    public async Task<User?> GetUserByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        return await _databaseContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+    }
+
+    public async Task<User?> GetUserByIdAsync(Guid id)
+    {
+        return await _databaseContext.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
 }

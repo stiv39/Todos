@@ -11,9 +11,8 @@ public interface ITodoRepository
     int page,
     int pageSize,
     CancellationToken cancellationToken);
-    Task<List<Todo>> GetTodosByIdsAsync(List<Guid> TodoIds, CancellationToken cancellationToken);
-    Task<Todo> GetTodoByIdAsync(Guid id, CancellationToken cancellationToken);
-    Task<Guid> AddTodoAsync(Todo Todo, CancellationToken cancellationToken);
-    Task<Todo?> UpdateTodoAsync(Todo Todo, CancellationToken cancellationToken);
-    void DeleteTodo(Guid id, CancellationToken cancellationToken);
+    Task<Todo?> GetTodoByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task AddTodoAsync(Todo todo, CancellationToken cancellationToken);
+    Task<bool> UpdateTodoAsync(Todo todo, CancellationToken cancellationToken);
+    void DeleteTodo(Todo todo);
 }

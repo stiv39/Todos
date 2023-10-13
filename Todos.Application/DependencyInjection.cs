@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Todos.Application.Common;
 
 namespace Todos.Application;
 
@@ -10,12 +13,11 @@ public static class DependencyInjection
         var assembly = typeof(DependencyInjection).Assembly;
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
 
-        //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-        //services.AddFluentValidationAutoValidation()
-        //       .AddFluentValidationClientsideAdapters()
-        //       .AddValidatorsFromAssembly(assembly);
-
+        services.AddFluentValidationAutoValidation()
+               .AddFluentValidationClientsideAdapters()
+               .AddValidatorsFromAssembly(assembly);
 
         return services;
     }

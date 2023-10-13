@@ -11,9 +11,8 @@ public interface IPostRepository
                     int page,
                     int pageSize,
                     CancellationToken cancellationToken);
-    Task<List<Post>> GetPostsByIdsAsync(List<Guid> PostIds, CancellationToken cancellationToken);
-    Task<Post> GetPostByIdAsync(Guid id, CancellationToken cancellationToken);
-    Task<Guid> AddPostAsync(Post Post, CancellationToken cancellationToken);
-    Task<Post?> UpdatePostAsync(Post Post, CancellationToken cancellationToken);
-    void DeletePost(Guid id, CancellationToken cancellationToken);
+    Task<Post?> GetPostByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task AddPostAsync(Post post, CancellationToken cancellationToken);
+    Task<bool> UpdatePostAsync(Post post, CancellationToken cancellationToken);
+    void DeletePost(Post post);
 }
