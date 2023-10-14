@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Posts.Domain.Interfaces.Repositories;
+using Todos.Domain.Interfaces.Repositories;
 using System.Linq.Expressions;
 using Todos.Domain.Entities;
 

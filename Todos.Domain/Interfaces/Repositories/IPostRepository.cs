@@ -1,6 +1,6 @@
 ﻿using Todos.Domain.Entities;
 
-namespace Posts.Domain.Interfaces.Repositories;
+namespace Todos.Domain.Interfaces.Repositories;
 
 public interface IPostRepository
 {
