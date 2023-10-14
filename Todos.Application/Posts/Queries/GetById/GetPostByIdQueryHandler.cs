@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Posts.Domain.Interfaces.Repositories;
+using Todos.Domain.Interfaces.Repositories;
 using Todos.Application.Posts.Queries.Get;
 using Todos.Domain.Entities;
 

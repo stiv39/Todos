@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Posts.Domain.Interfaces.Repositories;
+using Todos.Domain.Interfaces.Repositories;
 using Todos.Domain.Interfaces.UnitOfWork;
 
 namespace Todos.Application.Posts.Commands.Delete;
