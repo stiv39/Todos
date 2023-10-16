@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Todos.Application.Common.Services;
 using Todos.Domain.Interfaces.Repositories;
 using Todos.Domain.Interfaces.UnitOfWork;
+using Todos.Infrastructure.Authentication;
 using Todos.Infrastructure.Persistence;
 using Todos.Infrastructure.Persistence.Repositories;
 using Todos.Infrastructure.Persistence.UnitOfWork;
@@ -25,6 +27,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITodoRepository, TodoRepository>();
         services.AddScoped<IPostRepository, PostRepository>();
+
+        services.AddSingleton<IPasswordService, PasswordService>();
 
         return services;
     }
