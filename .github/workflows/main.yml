@@ -26,5 +26,8 @@ jobs:
 
     - name: Publish
       run: dotnet publish ./Todos.sln --configuration Release --no-build
+
+    - name: Test
+      run: dotnet test
       
     
